@@ -37,7 +37,7 @@ frontend www-http
     mode http
     default_backend web-backend
 frontend www-https
-    bind *:443 ssl crt  /etc/letsencrypt/live/www.abubakaru.tech/fullchain.pem
+    bind *:443 ssl crt  /etc/letsencrypt/live/www.elijahkb.tech/fullchain.pem
     http-request set-header X-Forwarded-Proto https
     acl letsencrypt-acl path_beg /.well-known/acme-challenge/
     use_backend letsencrypt-backend if letsencrypt-acl
@@ -46,7 +46,7 @@ frontend www-https
 backend web-backend
     redirect scheme https unless { ssl_fc }
     balance roundrobin
-    server 5924-web-01 54.204.172.232:80 check
-    server 5924-web-02 54.197.3.213:80 check
+    server 5891-web01 54.173.64.0:80 check
+    server 5891-web02 23.20.201.144:80 check
 backend letsencrypt-backend
    server letsencrypt 127.0.0.1:54321
